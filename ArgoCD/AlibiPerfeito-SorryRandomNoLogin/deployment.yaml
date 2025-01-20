@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: AlibiPerfeito-SorryRandomNoLogin
+  name: alibi-perfeito-sorry-random-no-login  # nome alterado para seguir as regras
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: SorryRandomNoLogin
+      app: sorry-random-no-login  # nome alterado para seguir as regras
   template:
     metadata:
-      labels: 
-        app: SorryRandomNoLogin
-    spec: 
+      labels:
+        app: sorry-random-no-login  # nome alterado para seguir as regras
+    spec:
       containers:
-        - name: AlibiPerfeito-SorryRandomNoLogin
+        - name: alibi-perfeito-sorry-random-no-login  # nome alterado para seguir as regras
           image: rodrigo453/alibiperfeito-sorryrandomnologin:v1
           ports:
             - containerPort: 5002
@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-SorryRandomNoLogin
+  name: service-sorry-random-no-login  # nome alterado para seguir as regras
 spec:
   selector:
-    app: SorryRandomNoLogin
+    app: sorry-random-no-login  # nome alterado para seguir as regras
   ports:
     - port: 80
       protocol: TCP
