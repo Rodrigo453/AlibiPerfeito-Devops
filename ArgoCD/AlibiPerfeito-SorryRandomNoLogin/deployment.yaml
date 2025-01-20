@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metada:
+  name: AlibiPerfeito-SorryRandomNoLogin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: SorryRandomNoLogin
+  template:
+    metadata:
+      labels: 
+        app: SorryRandomNoLogin
+    spec: 
+      containers:
+        - name: AlibiPerfeito-SorryRandomNoLogin
+          image: rodrigo453/alibiperfeito-sorryrandomnologin:v1
+          ports:
+            - containerPort: 5002
+---
+apiVersion: v1
+kind: Service
+metada:
+  name: service-SorryRandomNoLogin
+spec:
+  selector:
+    app: SorryRandomNoLogin
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 5002
