@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-metada:
+metadata:
   name: AlibiPerfeito-SorryRandomNoLogin
 spec:
   replicas: 1
@@ -20,7 +20,7 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metada:
+metadata:
   name: service-SorryRandomNoLogin
 spec:
   selector:
