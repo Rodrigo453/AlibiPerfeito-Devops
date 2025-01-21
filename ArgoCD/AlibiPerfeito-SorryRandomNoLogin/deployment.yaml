@@ -27,6 +27,5 @@ spec:
     app: sorry-random-no-login  # nome alterado para seguir as regras
   ports:
     - port: 5002
-      protocol: TCP
       targetPort: 5002
   type: NodePort
