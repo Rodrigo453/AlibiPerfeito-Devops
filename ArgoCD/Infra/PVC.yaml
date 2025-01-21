@@ -17,7 +17,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: keycloak-pv-claim
-  namespace: keycloak
+  namespace: infra
 spec:
   accessModes:
     - ReadWriteOnce
