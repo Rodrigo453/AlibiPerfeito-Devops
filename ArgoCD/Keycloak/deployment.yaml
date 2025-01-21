@@ -4,7 +4,7 @@ metadata:
   name: keycloak
 spec:
   volumes:
-    - name: pv-keycloak
+    - name: keycloak-pv-claim
       persistentVolumeClaim:
         claimName: keycloak-pv-claim
   replicas: 1
@@ -40,7 +40,7 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - mountPath: /mnt/data
-              name: pv-keycloak
+              name: keycloak-pv-claim
 ---
 apiVersion: v1
 kind: Service
