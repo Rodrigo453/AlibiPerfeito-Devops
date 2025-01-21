@@ -28,4 +28,5 @@ spec:
   ports:
     - port: 5008
       targetPort: 5008
+      nodePort: 5008
   type: NodePort
