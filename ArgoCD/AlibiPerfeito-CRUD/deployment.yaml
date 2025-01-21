@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: alibi-perfeito-crud
-          image: rodrigo453/alibiperfeito-crud:v3
+          image: rodrigo453/alibiperfeito-crud:v4
           ports:
             - containerPort: 5001
 ---
