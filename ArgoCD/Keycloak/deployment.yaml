@@ -1,4 +1,3 @@
-## Criando PVC
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -54,15 +53,15 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - mountPath: /mnt/data
-              name: keycloak-data-volume
+              name: keycloak-data-volume  # O nome aqui deve coincidir com o de volumes
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-keycloak  # nome alterado para seguir as regras
+  name: service-keycloak
 spec:
   selector:
-    app: keycloak  # nome alterado para seguir as regras
+    app: keycloak
   ports:
     - port: 9090
       targetPort: 9090
