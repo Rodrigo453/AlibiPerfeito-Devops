@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+spec:
+  volumes:
+    - name: pv-keycloak
+      persistentVolumeClaim:
+        claimName: keycloak-pv-claim
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: bitnami/keycloak:latest
+          env:
+            - name: KEYCLOAK_ADMIN
+              value: admin
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: admin
+            - name: KEYCLOAK_DATABASE_HOST
+              value: dpg-cu4kcvt2ng1s738j39fg-a.oregon-postgres.render.com
+            - name: KEYCLOAK_DATABASE_NAME
+              value: alibiperfeitodb_tfgn
+            - name: KEYCLOAK_DATABASE_USER
+              value: alibiperfeitouser
+            - name: KEYCLOAK_DATABASE_PASSWORD
+              value: 7qHsvBIJvbBU7XSTXolQJb7htXMdIA39
+            - name: KEYCLOAK_LOGLEVEL
+              value: DEBUG
+            - name: KEYCLOAK_LOG_FILE
+              value: /opt/keycloak/logs/keycloak.log
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - mountPath: /mnt/data
+              name: pv-keycloak
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-keycloak  # nome alterado para seguir as regras
+spec:
+  selector:
+    app: keycloak  # nome alterado para seguir as regras
+  ports:
+    - port: 9090
+      targetPort: 9090
+  type: NodePort
