@@ -16,7 +16,7 @@ spec:
         - name: alibi-perfeito-sorry-random-no-login  # nome alterado para seguir as regras
           image: rodrigo453/alibiperfeito-sorryrandomnologin:v3
           ports:
-            - containerPort: 30000
+            - containerPort: 30005
 ---
 apiVersion: v1
 kind: Service
@@ -26,7 +26,7 @@ spec:
   selector:
     app: sorry-random-no-login  # nome alterado para seguir as regras
   ports:
-    - port: 30000
-      targetPort: 30000
-      nodePort: 30000
+    - port: 30005
+      targetPort: 30005
+      nodePort: 30005
   type: NodePort
