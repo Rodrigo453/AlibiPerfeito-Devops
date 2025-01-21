@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: alibi-perfeito-sorry-random-no-login  # nome alterado para seguir as regras
-          image: rodrigo453/alibiperfeito-sorryrandomnologin:v3
+          image: rodrigo453/alibiperfeito-sorryrandomnologin:v2
           ports:
             - containerPort: 5002
 ---
