@@ -40,7 +40,7 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - mountPath: /mnt/data
-              name: keycloak-pv-claim
+              name: keycloak-pv-volume
 ---
 apiVersion: v1
 kind: Service
