@@ -2,24 +2,20 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: keycloak-pv-claim
-  namespace: keycloak
+  namespace: infra
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
-  storageClassName: "local-path"
+  storageClassName: keycloak
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: keycloak
 spec:
-  volumes:
-    - name: keycloak-data-volume
-      persistentVolumeClaim:
-        claimName: keycloak-pv-claim
   replicas: 1
   selector:
     matchLabels:
@@ -53,7 +49,11 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - mountPath: /mnt/data
-              name: keycloak-data-volume  # O nome aqui deve coincidir com o de volumes
+              name: keycloak-data-volume
+  volumes:
+    - name: keycloak-data-volume
+      persistentVolumeClaim:
+        claimName: keycloak-pv-claim
 ---
 apiVersion: v1
 kind: Service
