@@ -15,7 +15,7 @@ spec:
       containers:
         - name: bastion
           image: ubuntu:latest
-          command: ["/bin/sh", "-c", "while true; do sleep 30; done;"] # Mantém o container rodando
+          command: ["/bin/bash", "-c", "apt-get update && apt-get install -y curl dnsutils && while true; do sleep 30; done;"]
           ports:
             - containerPort: 6060
 ---
