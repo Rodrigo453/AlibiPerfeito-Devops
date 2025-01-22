@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: alibi-perfeito-crud
-          image: rodrigo453/alibiperfeito-crud:v1 #v5 apontamento ip keycloak
+          image: rodrigo453/alibiperfeito-crud:v2 #v5 apontamento ip keycloak
           ports:
             - containerPort: 5001
 ---
