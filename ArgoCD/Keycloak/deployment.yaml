@@ -9,7 +9,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
-  storageClassName: "local-path"
+  storageClassName: "local-path"  # O seu storageClassName correto
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -49,11 +49,11 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - mountPath: /mnt/data
-              name: keycloak-data-volume
+              name: keycloak-data-volume  # O nome que corresponde ao volume no 'volumes'
   volumes:
-    - name: keycloak-data-volume
+    - name: keycloak-data-volume  # Nome do volume
       persistentVolumeClaim:
-        claimName: keycloak-pv-claim
+        claimName: keycloak-pv-claim  # Referência ao PVC correto
 ---
 apiVersion: v1
 kind: Service
