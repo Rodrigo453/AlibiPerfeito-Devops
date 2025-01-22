@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: bastion
-          image: alpine:latest
+          image: ubuntu:latest
           command: ["/bin/sh", "-c", "while true; do sleep 30; done;"] # Mantém o container rodando
           ports:
             - containerPort: 6060
