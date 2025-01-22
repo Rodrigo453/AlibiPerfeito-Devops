@@ -45,6 +45,8 @@ spec:
               value: alibiperfeitouser
             - name: KEYCLOAK_DATABASE_PASSWORD
               value: 7qHsvBIJvbBU7XSTXolQJb7htXMdIA39
+            - name: KEYCLOAK_DATABASE_SCHEMA
+              value: keycloak
             - name: KEYCLOAK_LOGLEVEL
               value: DEBUG
             - name: KEYCLOAK_LOG_FILE
