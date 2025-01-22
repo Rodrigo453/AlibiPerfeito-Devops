@@ -53,11 +53,7 @@ spec:
             - containerPort: 9090
           volumeMounts:
             - mountPath: "/mnt/data"
-              name: task-pv-storage
-  volumes:
-    - name: keycloak-data-volume  # Nome do volume
-      persistentVolumeClaim:
-        claimName: keycloak-pv-claim  # Referência ao PVC correto
+              name: keycloak-data-volume
 ---
 apiVersion: v1
 kind: Service
