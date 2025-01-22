@@ -52,7 +52,7 @@ spec:
             - name: KEYCLOAK_LOG_FILE
               value: /opt/keycloak/logs/keycloak.log
           ports:
-            - containerPort: 9090
+            - containerPort: 8080
           volumeMounts:
             - mountPath: "/mnt/data"
               name: keycloak-data-volume
@@ -65,6 +65,6 @@ spec:
   selector:
     app: keycloak
   ports:
-    - port: 9090
-      targetPort: 9090
+    - port: 8080
+      targetPort: 8080
   type: NodePort
