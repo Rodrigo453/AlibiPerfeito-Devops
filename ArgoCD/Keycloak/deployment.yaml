@@ -47,9 +47,9 @@ spec:
               value: /opt/keycloak/logs/keycloak.log
           ports:
             - containerPort: 9090
-          volumeMounts:
-            - mountPath: /mnt/data
-              name: keycloak-data-volume  # O nome que corresponde ao volume no 'volumes'
+          #volumeMounts:
+           # - mountPath: /mnt/data
+           #   name: keycloak-data-volume  # O nome que corresponde ao volume no 'volumes'
   volumes:
     - name: keycloak-data-volume  # Nome do volume
       persistentVolumeClaim:
