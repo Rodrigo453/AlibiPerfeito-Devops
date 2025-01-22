@@ -15,8 +15,9 @@ spec:
       containers:
         - name: bastion
           image: alpine:latest
+          command: ["/bin/sh", "-c", "while true; do sleep 30; done;"] # Mantém o container rodando
           ports:
-            - containerPort: 6061
+            - containerPort: 6060
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +27,6 @@ spec:
   selector:
     app: bastion  # nome alterado para seguir as regras
   ports:
-    - port: 6061
-      targetPort: 6061
+    - port: 6060
+      targetPort: 6060
   type: NodePort
