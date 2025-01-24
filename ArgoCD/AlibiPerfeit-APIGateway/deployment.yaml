@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: alibi-perfeito-api-gateway
-          image: rodrigo453/alibiperfeito-apigateway:v3 #v5 apontamento ip keycloak
+          image: rodrigo453/alibiperfeito-apigateway:v4 #v5 apontamento ip keycloak
           ports:
             - containerPort: 8084
 ---
