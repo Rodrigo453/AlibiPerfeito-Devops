@@ -8,24 +8,15 @@ on:
         type: string
 
 jobs:
-
   alteraTag:
     runs-on: ubuntu:latest
     env:
-      Tag: ${{ inputs.var }}
+      Tag: ${{ inputs.var }}  # A variável 'Tag' recebe o parâmetro
 
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v2
-      
+        
       - name: Alterar a tag no deployment.yaml
         run: |
           sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: rodrigo453/alibiperfeito-apigateway:${{ env.Tag }}|" ./main.yaml
-
-      - name: Commit e push da alteração no deployment.yaml
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git ./main.yaml
-          git commit -m "Atualizando a imagem para tag ${{ env.Tag }}"
-          git push
