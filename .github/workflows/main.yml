@@ -5,18 +5,34 @@ on:
     inputs:
       var:
         required: true
-        type: string
+        type: string  # Definindo a tag como input obrigatório
 
 jobs:
   alteraTag:
     runs-on: ubuntu:latest
     env:
-      Tag: ${{ inputs.var }}  # A variável 'Tag' recebe o parâmetro
+      Tag: ${{ inputs.var }}  # A variável 'Tag' recebe a tag enviada como input
 
     steps:
-      - name: Checkout do repositório
+      - name: Checkout do repositório de deploy
         uses: actions/checkout@v2
-        
-      - name: Alterar a tag no deployment.yaml
+        with:
+          repository: "rodrigo453/AlibiPerfeito-Devops"
+          token: ${{ secrets.DEPLOYMENT_REPO_ACCESS_TOKEN }}  # Usando token para acessar o repositório de deploy
+
+      - name: Listar arquivos para verificar localização do deployment.yaml
         run: |
-          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: rodrigo453/alibiperfeito-apigateway:${{ env.Tag }}|" ./main.yaml
+          ls -R  # Confirmando onde está o arquivo deployment.yaml
+
+      - name: Atualizar deployment.yaml com a nova versão da imagem
+        run: |
+          IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:${{ inputs.var }}
+          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml  # Atualizando a tag no arquivo correto
+
+      - name: Commit e push da alteração no deployment.yaml
+        run: |
+          git config --global user.email "rodrigochicora.azevedo@gmail.com"  # Defina seu email
+          git config --global user.name "rodrigo453"  # Defina seu nome de usuário
+          git add ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
+          git commit -m "Update image version to $IMAGE_TAG"  # Commit da alteração
+          git push origin main  # Empurrando para a branch principal
