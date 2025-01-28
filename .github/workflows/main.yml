@@ -2,25 +2,18 @@ name: DeployArgo
 
 on:
   push:
-    branches: ["main"]
-  #workflow_call:
-  #  inputs:
-   #   var:
-  #      required: true
-    #    type: string
+    branches:
+      - "main"
 
 jobs:
   alteraTag:
-    runs-on: ubuntu-latest
-    
+    runs-on: ubuntu-latest  # Corrigido para ubuntu-latest
+
     steps:
       - name: Checkout do repositório de deploy
         uses: actions/checkout@v2
         
       - name: Alterar a tag no deployment.yaml
-        with:
-          repository: "./ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml@main"
-          run: |
-            IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:133
-            sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml  # Atualizando a tag no arquivo correto
-      
+        run: |
+          IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:133
+          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml  # Atualizando a tag no arquivo correto
