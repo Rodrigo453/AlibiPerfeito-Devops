@@ -1,34 +1,37 @@
 name: DeployArgo
 
 on:
- workflow_call:
+  workflow_call:
     inputs:
       var:
         required: true
         type: string
-      
+
 jobs:
   alteraTag:
-    runs-on: ubuntu-latest  # Corrigido para ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do repositório de deploy
+      # Passo 1: Checkout do repositório onde o arquivo deployment.yaml está
+      - name: Checkout do repositório de deploy (AlibiPerfeito-Devops)
         uses: actions/checkout@v2
         with:
-          repository: "rodrigo453/AlibiPerfeito-APIGateway"
+          repository: "rodrigo453/AlibiPerfeito-Devops"
           token: ${{ secrets.DEPLOYMENT_REPO_ACCESS_TOKEN }} 
-        
+          ref: 'main'  # Certificando-se de que está usando a branch certa
+
+      # Passo 2: Alterar a tag no arquivo deployment.yaml
       - name: Alterar a tag no deployment.yaml
         run: |
           IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:${{ inputs.var }}
-          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" rodrigo453/AlibiPerfeito-Devops/ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml@main
+          # Caminho correto para o arquivo após checkout do repositório
+          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
 
+      # Passo 3: Commit do arquivo alterado
       - name: Commit updated deployment file
         run: |
           git config --global user.email "rodrigochicora.azevedo@gmail.com"
           git config --global user.name "rodrigo453"
           git add ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
           git commit -m "Update image version to ${{ inputs.var }}"
-          git push origin main  # Certifique-se de usar o token de acesso, se necessário
-       
-      
+          git push origin main
