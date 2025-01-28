@@ -12,10 +12,7 @@ on:
 jobs:
   alteraTag:
     runs-on: ubuntu:latest
-    env:
-      Taaag: 13
-      #Tag: ${{ inputs.var }}  # A variável 'Tag' recebe o parâmetro
-
+    
     steps:
       - name: Checkout do repositório de deploy
         uses: actions/checkout@v2
@@ -26,11 +23,4 @@ jobs:
           run: |
             IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:133
             sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml  # Atualizando a tag no arquivo correto
-      - name: Commit e push da alteração no deployment.yaml
-        run: |
-          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: rodrigo453/alibiperfeito-apigateway:${{ env.Tag }}|" ./main.yaml
-          git config --global user.email "rodrigochicora.azevedo@gmail.com"  # Defina seu email
-          git config --global user.name "rodrigo453"  # Defina seu nome de usuário
-          git add ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
-          git commit -m "Update image version to $IMAGE_TAG"  # Commit da alteração
-          git push origin main  # Empurrando para a branch principal
+      
