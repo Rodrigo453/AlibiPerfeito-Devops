@@ -17,3 +17,11 @@ jobs:
         run: |
           IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:133
           sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml  # Atualizando a tag no arquivo correto
+       
+      - name: Commit updated deployment file
+        run: |
+          git config --global user.email "rodrigochicora.azevedo@gmail.com"
+          git config --global user.name "rodrigo453"
+          git add ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
+          git commit -m "Update image version to $IMAGE_TAG"
+          git push origin main  # Certifique-se de usar o token de acesso, se necessário
