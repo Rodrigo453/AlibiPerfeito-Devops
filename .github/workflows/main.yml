@@ -15,7 +15,7 @@ jobs:
       - name: Checkout do repositório de deploy
         uses: actions/checkout@v2
         with:
-          repository: "rodrigo453/AlibiPerfeito-Devops"
+          repository: "rodrigo453/AlibiPerfeito-APIGateway"
           token: ${{ secrets.DEPLOYMENT_REPO_ACCESS_TOKEN }} 
         
       - name: Alterar a tag no deployment.yaml
