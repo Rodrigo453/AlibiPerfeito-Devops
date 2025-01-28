@@ -20,7 +20,7 @@ jobs:
         
       - name: Alterar a tag no deployment.yaml
         run: |
-          IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:{{ inputs.var }}
+          IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:${{ inputs.var }}
           sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml  # Atualizando a tag no arquivo correto
 
       - name: Commit updated deployment file
@@ -28,7 +28,7 @@ jobs:
           git config --global user.email "rodrigochicora.azevedo@gmail.com"
           git config --global user.name "rodrigo453"
           git add ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
-          git commit -m "Update image version to {{ inputs.var }}"
+          git commit -m "Update image version to ${{ inputs.var }}"
           git push origin main  # Certifique-se de usar o token de acesso, se necessário
        
       
