@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: alibi-perfeito-api-gateway
-          image: rodrigo453/alibiperfeito-apigateway:24
+          image: rodrigo453/alibiperfeito-apigateway:133
           ports:
             - containerPort: 8084
 ---
