@@ -6,11 +6,7 @@ on:
       var:
         required: true
         type: string
-      token:
-        required: true
-        type: string
       
-
 jobs:
   alteraTag:
     runs-on: ubuntu-latest  # Corrigido para ubuntu-latest
@@ -20,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: "rodrigo453/AlibiPerfeito-APIGateway"
-          token: ${{ inputs.token }} 
+          token: ${{ secrets.DEPLOYMENT_REPO_ACCESS_TOKEN }} 
         
       - name: Alterar a tag no deployment.yaml
         run: |
