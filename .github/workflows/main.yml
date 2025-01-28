@@ -21,7 +21,7 @@ jobs:
       - name: Alterar a tag no deployment.yaml
         run: |
           IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:${{ inputs.var }}
-          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" rodrigo453/AlibiPerfeito-Devops/ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
+          sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" rodrigo453/AlibiPerfeito-Devops/ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml@main
 
       - name: Commit updated deployment file
         run: |
