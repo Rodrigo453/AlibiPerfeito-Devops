@@ -17,8 +17,6 @@ jobs:
       #Tag: ${{ inputs.var }}  # A variável 'Tag' recebe o parâmetro
 
     steps:
-    
-      - name: Checkout do repositório
       - name: Checkout do repositório de deploy
         uses: actions/checkout@v2
         
