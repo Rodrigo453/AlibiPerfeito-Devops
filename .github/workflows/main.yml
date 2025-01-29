@@ -43,5 +43,5 @@ jobs:
           git config --global user.email "rodrigochicora.azevedo@gmail.com"
           git config --global user.name "rodrigo453"
           git add ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
-          git commit -m "Update image version to ${{ IMAGE_TAG }}"
+          git commit -m "Update image version to "
           git push origin main
