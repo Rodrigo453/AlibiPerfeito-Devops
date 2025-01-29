@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: "rodrigo453/AlibiPerfeito-Devops"
-          token: ${{ secrets.DEPLOYMENT_REPO_ACCESS_TOKEN }} 
+          token: ${{ secrets.DEPLOY_REPO }} 
           ref: 'main'  # Certificando-se de que está usando a branch certa
 
       # Passo 2: Alterar a tag no arquivo deployment.yaml
