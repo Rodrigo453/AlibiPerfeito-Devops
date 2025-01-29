@@ -2,10 +2,10 @@ name: DeployArgo
 
 on:
   workflow_call:
-    inputs:
-      RELEASE_VERSION:
-        required: true
-        type: string
+    #inputs:
+      #RELEASE_VERSION:
+       # required: falase
+        #type: string
 
 jobs:
   alteraTag:
