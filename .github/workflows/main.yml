@@ -10,8 +10,16 @@ on:
 jobs:
   alteraTag:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Download Release Version
+        uses: actions/download-artifact@v3
+        with:
+          name: release_version
+
+      - name: Load release Version
+        run: | 
+          echo "RELEASE_VERSION=$(cat release_version.txt)" >> $GITHUB_ENV
+    
       # Passo 1: Checkout do repositório onde o arquivo deployment.yaml está
       - name: Checkout do repositório de deploy (AlibiPerfeito-Devops)
         uses: actions/checkout@v2
