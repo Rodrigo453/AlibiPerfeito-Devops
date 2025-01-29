@@ -3,7 +3,7 @@ name: DeployArgo
 on:
   workflow_call:
     inputs:
-      var:
+      RELEASE_VERSION:
         required: true
         type: string
 
@@ -19,6 +19,9 @@ jobs:
           repository: "rodrigo453/AlibiPerfeito-Devops"
           token: ${{ secrets.DEPLOY_REPO }} 
           ref: 'main'  # Certificando-se de que está usando a branch certa
+
+      - name: Usando a versão recebida
+        run: echo "Versão recebida: ${{ inputs.RELEASE_VERSION }}"
 
       # Passo 2: Alterar a tag no arquivo deployment.yaml
       - name: Alterar a tag no deployment.yaml
