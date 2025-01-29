@@ -25,6 +25,7 @@ jobs:
         run: |
           IMAGE_TAG=rodrigo453/alibiperfeito-apigateway:${{ inputs.var }}
           # Caminho correto para o arquivo após checkout do repositório
+          echo "Atualizando deployment.yaml com: $IMAGE_TAG"
           sed -i "s|image: rodrigo453/alibiperfeito-apigateway:.*|image: $IMAGE_TAG|" ArgoCD/AlibiPerfeit-APIGateway/deployment.yaml
 
       # Passo 3: Commit do arquivo alterado
